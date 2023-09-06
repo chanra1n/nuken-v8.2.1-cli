@@ -1,7 +1,7 @@
 {
   "name": "nuken",
   "productName": "nuken",
-  "version": "8.0.2",
+  "version": "8.2.1",
   "description": "nuken is a development environment for web-based applications.",
   "main": "src/index.js",
   "author": "nuken Dev Team",

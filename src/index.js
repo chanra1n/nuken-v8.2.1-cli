@@ -19,6 +19,11 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+function clearCache() {
+  const wintest = BrowserWindow.getAllWindows()[0];
+  const ses = wintest.webContents.session;
+  ses.clearCache();
+}
 
 const ipc = {
     'render': {
@@ -139,18 +144,22 @@ if (args == "NOTHING"){
 });
 
 ipcMain.handle('addons', async (event, someArgument) => {
+
   return addon_index;
 });
 
 ipcMain.handle('templates', async (event, someArgument) => {
+
   return template_index;
 });
 
 ipcMain.handle('themes', async (event, someArgument) => {
+
   return theme_index;
 });
 
 ipcMain.on('extract_file', async (event, args) => {
+clearCache();	
 extract_zip_file(args);
 });
 
@@ -161,10 +170,13 @@ app.exit();
 
 
 ipcMain.on('delete_file', async (event, args) => {
+clearCache();	
 delete_file(args);
+
 });
 
 ipcMain.on('delete_folder', async (event, args) => {
+clearCache();	
 delete_folder(args);
 });
 
@@ -177,21 +189,18 @@ ipcMain.on('show_folder', async (event, args) => {
 
 var delete_file = function(file){
 
-
-mainWindow.webContents.executeJavaScript(`notify("If nuken missed something, you migt have to yeet it manually. You can open the directories you're looking for from the <a uk-toggle= "target:#content_page"><i class="ri-install-fill"></i> <span>Downloaded Content Menu.</span></a>")`);
-
 var filepath = path.join(__dirname,file);// Previously saved path somewhere
 
 if (fs.existsSync(filepath)) {
     fs.unlink(filepath, (err) => {
         if (err) {
-            mainWindow.webContents.executeJavaScript(`notify("The content you were trying to delete just... won't... die.")`);
+            mainWindow.webContents.executeJavaScript(`notify("An error occurred.")`);
             return;
         }
         mainWindow.webContents.executeJavaScript(`notify("Content was successfully deleted.")`);
     });
 } else {
-    mainWindow.webContents.executeJavaScript('notify("Hm, are you sure that file exists?")');
+    mainWindow.webContents.executeJavaScript(`notify("Hmm, it doesn't look like that file exists.")`);
 }
 
 };
@@ -209,7 +218,7 @@ fs.readdir(directory, (err, files) => {
   for (const file of files) {
     fs.unlink(path.join(directory, file), err => {
       if (err){
-mainWindow.webContents.executeJavaScript(`console.log("The files weren't deleted. Deal with it. `+err+`")`);
+   mainWindow.webContents.executeJavaScript(`console.log("The files weren't deleted. Deal with it. `+err+`")`);
       }
     });
   }
@@ -237,7 +246,7 @@ unzipper.on('error', function (err) {
 // Notify when everything is extracted
 unzipper.on('extract', function (log) {
     console.log('Finished extracting', log);
-	mainWindow.webContents.executeJavaScript('notify("Content was installed successfully. Please restart nuken (now or later) to use it.")');
+	mainWindow.webContents.executeJavaScript('notify("Content was installed successfully. Restart nuken to apply changes.")');
 	mainWindow.webContents.executeJavaScript('download_sound.currentTime=0;download_sound.play();');
 	
 	
@@ -436,11 +445,13 @@ app.on('window-all-closed', () => {
 
 // 👇 Comment out the code below if you want to enable DevTools in nuken. 👇
 
-/*
+
+
 app.on("browser-window-created", (e, win) => {
    win.removeMenu();
 });
-*/
+
+
 
 
 // 👆 Comment out the code above if you want to enable DevTools in nuken. 👆

@@ -56,25 +56,25 @@
 
 @font-face {
   font-family: "discord";
-  src: url("discord.otf");
+  src: url("fonts/poppinsbold.ttf");
 
 }
 
 @font-face {
   font-family: "github";
-  src: url("github.ttf");
+  src: url("fonts/poppinsbold.ttf");
 
 }
 
 @font-face {
   font-family: "twitch";
-  src: url("twitch.otf");
+  src: url("fonts/poppinsbold.ttf");
 
 }
 
 @font-face {
   font-family: "instagram";
-  src: url("instagram.otf");
+  src: url("fonts/poppinsbold.ttf");
 
 }
 
@@ -209,7 +209,8 @@ float:right;
     padding-top: 1vmin;
     text-align: center;
     color: gray;
-    max-width: 35vmin;
+	width:auto;
+    max-width: 35vmin!important;
 }
 
 .uk-dropdown .uk-dropdown {
@@ -308,10 +309,6 @@ vertical-align:middle;
     min-height: 7.5%;
 	
 
-}
-
-.twitter-app {
-transform:scale(1)!important;
 }
 
 .ace_gutter-cell {
@@ -1415,6 +1412,10 @@ filter:none;
 #script_menu, #style_menu, #template_menu {
 }
 
+#template_selection {
+margin-left:-3vmin;
+}
+
 #template_selection .selected_resource {
 transform:scale(1);
 }
@@ -1842,6 +1843,10 @@ font-family:'master';
     margin-top: 0.5vmin;
 }
 
+.grid div h1 {
+font-family:'bold'!important;
+}
+
 #share_page .app i {
 color:white;
 text-align:center;
@@ -1937,7 +1942,7 @@ vertical-align:middle;
 }
 
 #share_page #share_frame {
- background-image: url('https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2630');
+ background-image: url('../icons/images/camera.jpg');
 }
 
 #share_page canvas {
@@ -1946,10 +1951,12 @@ display:block!important;
 
 #share_page #share_project_bar {
     position: absolute;
-    bottom: 10vmin;
     width: 100%;
     padding: 2vmin;
     display: none;
+    bottom: 5vmin;
+		margin:1vmin;
+	margin-left:0px;
 }
 
 #share_page #share_project_bar i {

@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "author": "nuken Dev Team",
   "license": "MIT",
-   "scripts": {
+  "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
@@ -48,6 +48,7 @@
     }
   },
   "dependencies": {
+    "@electron/build-tools": "^1.1.0",
     "@electron/remote": "^2.0.8",
     "decompress-response": "^3.3.0",
     "decompress-zip": "^0.3.3",
@@ -66,8 +67,9 @@
     "mkdirp": "^1.0.4",
     "sudo-prompt": "^9.2.1"
   },
-   "devDependencies": {
+  "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.65",
+    "@electron/build-tools": "^1.1.0",
     "@electron-forge/maker-appx": "^6.0.0-beta.65",
     "@electron-forge/maker-deb": "^6.0.0-beta.65",
     "@electron-forge/maker-rpm": "^6.0.0-beta.65",
@@ -79,7 +81,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "coffee-script": "^1.4.0",
-    "electron-builder": "^23.1.0",
+    "electron-builder": "^23.6.0",
     "electron-prebuilt-compile": "8.2.0",
     "electron-rebuild": "^3.2.8",
     "eslint": "^3.19.0",
@@ -88,5 +90,4 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.30.1"
   }
-
 }
